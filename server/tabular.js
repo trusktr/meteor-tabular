@@ -51,9 +51,8 @@ Meteor.publish("tabular_genericPub", function (tableName, ids, fields) {
   return table.collection.find({_id: {$in: ids}}, {fields: fields});
 });
 
-Meteor.publish("tabular_getInfo", function(tableName, selector, sort, skip, limit) {
+Meteor.publish("tabular_getInfo", function(tableName, selector, sort, skip, limit, geoQuery) {
   var self = this;
-
   check(tableName, String);
   check(selector, Match.Optional(Match.OneOf(Object, null)));
   check(sort, Match.Optional(Match.OneOf(Array, null)));
@@ -94,6 +93,8 @@ Meteor.publish("tabular_getInfo", function(tableName, selector, sort, skip, limi
       selector = {$and: [tableSelector, selector]};
     }
   }
+
+  _.extend(selector, geoQuery || {});
 
   var findOptions = {
     skip: skip,

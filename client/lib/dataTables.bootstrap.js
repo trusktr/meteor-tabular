@@ -20,8 +20,8 @@ var factory = function( $, DataTable ) {
 $.extend( true, DataTable.defaults, {
 	dom:
 		"<'row'<'col-xs-6'l><'col-xs-6'f>r>" +
-		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-6'i><'col-xs-6'p>>",
+		"<'row table-row'<'col-xs-12 table-col'<'table-wrapper't>><'shadow'>>" +
+		"<'row pagination-row'<'col-s-6'i><'col-s-6'p>>",
 	renderer: 'bootstrap'
 } );
 

@@ -44,6 +44,7 @@ table.dataTable {
 	margin-top: 6px !important;
 	margin-bottom: 6px !important;
 	max-width: none !important;
+    border-collapse: separate;
 }
 
 table.dataTable thead .sorting,
@@ -54,16 +55,17 @@ table.dataTable thead .sorting_desc_disabled {
 	cursor: pointer;
 }
 
-table.dataTable thead .sorting { background: url('/packages/aldeed_tabular/images/sort_both.png') no-repeat center right; }
-table.dataTable thead .sorting_asc { background: url('/packages/aldeed_tabular/images/sort_asc.png') no-repeat center right; }
-table.dataTable thead .sorting_desc { background: url('/packages/aldeed_tabular/images/sort_desc.png') no-repeat center right; }
+table.dataTable thead .sorting { background: url('/packages/goin_tabular/images/sort_both.png') no-repeat center right; }
+table.dataTable thead .sorting_asc { background: url('/packages/goin_tabular/images/sort_asc.png') no-repeat center right; }
+table.dataTable thead .sorting_desc { background: url('/packages/goin_tabular/images/sort_desc.png') no-repeat center right; }
 
-table.dataTable thead .sorting_asc_disabled { background: url('/packages/aldeed_tabular/images/sort_asc_disabled.png') no-repeat center right; }
-table.dataTable thead .sorting_desc_disabled { background: url('/packages/aldeed_tabular/images/sort_desc_disabled.png') no-repeat center right; }
+table.dataTable thead .sorting_asc_disabled { background: url('/packages/goin_tabular/images/sort_asc_disabled.png') no-repeat center right; }
+table.dataTable thead .sorting_desc_disabled { background: url('/packages/goin_tabular/images/sort_desc_disabled.png') no-repeat center right; }
 
 table.dataTable thead > tr > th {
 	padding-left: 18px;
 	padding-right: 18px;
+    border: none;
 }
 
 table.dataTable th:active {
@@ -295,3 +297,58 @@ div.FixedHeader_Cloned table {
 	margin: 0 !important
 }
 
+
+
+div.dataTables_wrapper {
+  box-sizing: border-box;
+}
+
+div.dataTables_wrapper div {
+  box-sizing: border-box;
+}
+
+div.dataTables_wrapper > .pagination-row {
+  padding-top: 10px;
+}
+
+div.dataTables_wrapper > .table-row {
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+div.dataTables_wrapper > .table-row > .shadow {
+  position: absolute;
+  width: calc(100% - 30px);
+  height: calc(100% - 0px); /* -20px if scrollbars preset. See tabular.js, search for 'table-col' */
+  pointer-events: none;
+}
+
+/* left/right shadow. We enable one or the other, or both, depending on scroll
+ * position. See tabular.js, search for "handleShadowEffect".
+ */
+div.dataTables_wrapper > .table-row > .shadow.left {
+  box-shadow: inset 8px 0 8px -8px rgba(0,0,0,0.2)/*, inset -8px 0 8px -8px rgba(0,0,0,0.2)*/;
+}
+div.dataTables_wrapper > .table-row > .shadow.right {
+  box-shadow: /*inset 8px 0 8px -8px rgba(0,0,0,0.2), */inset -8px 0 8px -8px rgba(0,0,0,0.2);
+}
+div.dataTables_wrapper > .table-row > .shadow.both {
+  box-shadow: inset 8px 0 8px -8px rgba(0,0,0,0.2), inset -8px 0 8px -8px rgba(0,0,0,0.2);
+}
+
+div.dataTables_wrapper > .table-row > .table-col {
+  overflow:   auto;
+  padding-top: 10px;
+  padding-bottom: 10px; /*set to 12px if browser has scrollbars. See tabular.js, search for 'table-col' */
+}
+
+div.dataTables_wrapper > .table-row > .table-col > .table-wrapper {
+
+  /* A very useful property of floating elements is that they shrinkwrap to
+   * the size of their inner content.
+   */
+  float: left;
+
+  padding-right: 20px;
+}

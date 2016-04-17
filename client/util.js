@@ -54,11 +54,18 @@ Util.getMongoSort = function getMongoSort(order, columns) {
   // and ignore instance functions like "foo()"
   var sort = [];
   _.each(order, function (ord) {
-    var propName = columns[ord.column].data;
+    var originalSortDataField = columns[ord.column].data;
+    var customSortFunction = columns[ord.column].customSortFunction;
     var orderable = columns[ord.column].orderable;
-    if (typeof propName === 'string' && orderable !== false) {
-      sort.push([propName, ord.dir]);
+
+    if ((typeof originalSortDataField === 'string' || typeof customSortFunction === 'function') && orderable !== false) {
+      sort.push({
+        originalSortDataField: originalSortDataField,
+        customSortFunction: customSortFunction,
+        direction: ord.dir
+      });
     }
   });
+
   return sort;
 };
